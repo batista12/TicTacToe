@@ -9,7 +9,7 @@ public class TicTacToe
 			tictactoe[i]=' ';
 		}
 		return tictactoe;
-	}
+      }
 	/*UC2*/
         public static char chooseLetterXO()
 	{	
