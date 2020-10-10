@@ -166,8 +166,24 @@ public class TicTacToe
 					computerMove(board, indexC, computerLetter);
 					break;
 		}
-	}
-}
+	   }
+      }
+	/*UC 11*/
+	public static int availableCentreOrSide(char[] board) {
+	int indexOfSide = 0;
+	if(board[4]==' ')
+		indexOfSide = 4;
+	else if(board[3]==' ')
+		indexOfSide = 3;
+	else if(board[1]==' ')
+		indexOfSide = 1;
+	else if(board[5]==' ')
+		indexOfSide = 5;
+	else if(board[7]==' ')
+		indexOfSide = 7;
+	return indexOfSide;
+       }
+
 	public static void main (String[]args)
 	{
 		char computerLetter;
@@ -184,7 +200,9 @@ public class TicTacToe
 		checkMove(board, index, userinput);
 		int pos=compWin(board,userinput);
 		int corner=availableCorner(board);
-		computerChance(board,indexC,computerLetter)
+		computerChance(board,indexC,computerLetter);
+		int availablepart=availableCentreOrSide(board);
+		showBoard(board);
 	}
 }
 
