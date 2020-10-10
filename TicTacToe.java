@@ -183,6 +183,83 @@ public class TicTacToe
 		indexOfSide = 7;
 	return indexOfSide;
        }
+	/*UC 12 and 13*/
+       public static void ticTacToe() {
+	char[] board = createBoard();
+	showBoard(board);
+	char playerLetter = chooseLetter();
+	char computerLetter = ' ';
+	if (playerLetter == 'X') {
+		computerLetter = 'O';
+		System.out.println("Players letter is " + playerLetter + " and Computers letter is " +computerLetter);
+	} else {
+		computerLetter = 'X';
+		System.out.println("Players letter is " + playerLetter + " and Computers letter is " + computerLetter);
+	}
+	String firstPlayer = switchUser();
+	System.out.println("First chance " + firstPlayer);
+	char userinput = ' ';
+	if (firstPlayer == User)
+		userinput = playerLetter;
+	else
+		userinput = computerLetter;
+	System.out.println("Input taken for firstPlayer is " + userinput);
+	int turn = 0;
+	do {
+		int positionComputer = 0;
+		int blockPlayer = 0;
+		int cornerPosition = 0;
+		int centreSidePosition = 0;
+		if (firstPlayer == Computer) {
+			showBoard(board);
+			positionComputer = compWin(board, userinput);
+			blockPlayer = computerChance(board, userinput,playerLetter, computerLetter);
+			if (positionComputer != 10) {
+				System.out.println("Computer will win if " +positionComputer + " is choosen");
+				board[positionComputer] = userinput;
+				showBoard(board);
+			} else if (blockPlayer != 10) {
+				System.out.println("If " + blockPlayer + " is
+						choosen player will win.So Block that");
+						board[blockPlayer] = userinput;
+				showBoard(board);
+			} else if (cornerPosition != 10) {
+				System.out.println("Computer choose corner position " + cornerPosition);
+						board[cornerPosition] = userinput;
+						showBoard(board);
+			}
+			else if(centreSidePosition != 10) {
+				System.out.println("Computer choose position "+cornerPosition);
+						board[centreSidePosition] = userinput;
+						showBoard(board);
+			}
+			else {
+				System.out.println("Enter computer position ");
+				int indexC = (int) (Math.floor(Math.random() * 10
+						% 9));
+				System.out.println("Computer choose position " +
+						indexC);
+				checkMove(board, indexC, userinput);
+				showBoard(board);
+			}
+		} else {
+			System.out.println("Enter player position");
+			int index = sc.nextInt();
+			checkMove(board, index, userinput);
+		}
+		String output = isWinning(board, userinput);
+		System.out.println("Output is " + output);
+		if (output == "Win")
+			turn = 1;
+		else if (output == "Change") {
+			userinput = swapPlayerLetter(userinput, playerLetter,
+					computerLetter);
+			firstPlayer = swapTurn(firstPlayer);
+			turn = 0;
+		} else
+			turn = 1;
+	} while (turn != 1);
+}
 
 	public static void main (String[]args)
 	{
@@ -203,6 +280,12 @@ public class TicTacToe
 		computerChance(board,indexC,computerLetter);
 		int availablepart=availableCentreOrSide(board);
 		showBoard(board);
+		char anotherGame=' ';
+		do {
+		ticTac();
+		System.out.println("Do you want to play again ? (Y / N)");
+		anotherGame = sc.next().charAt(0);
+		}while(anotherGame != 'N')
 	}
 }
 
