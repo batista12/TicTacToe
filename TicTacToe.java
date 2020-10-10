@@ -62,6 +62,39 @@ public class TicTacToe
 			userTurn = Computer;
 		return userTurn;
 	}
+	/*UC7*/
+
+        public static String decideWinner(char[] board, char userinput) {
+		int count = 0;
+		for (int i = 0; i < 10; i++)
+			if (board[i] == ' ')
+				count++;
+		if (count == 0)
+			return "Tie";
+		else if ((board[0] == userinput && board[1] == userinput && board[2]
+				== userinput)|| (board[3] == userinput && board[4] == userinput &&board[5] == userinput)|| (board[6] == userinput && board[7] == userinput &&
+				board[8] == userinput)|| (board[0] == userinput && board[3] == userinput && board[6] == userinput)|| (board[1] == userinput && board[4] == userinput &&
+				board[7] == userinput)|| (board[2] == userinput && board[5] == userinput &&board[8] == userinput)|| (board[0] == userinput && board[4] == userinput &&
+				board[8] == userinput)|| (board[2] == userinput && board[4] == userinput &&board[6] == userinput))
+			return "Win";
+		else
+			return "Change";
+	}
+	public static char swapPlayerLetter(char userinput, char playerLetter,
+			char computerLetter) {
+		if (userinput == playerLetter)
+			userinput = computerLetter;
+		else
+			userinput = playerLetter;
+		return userinput;
+	}
+	public static String swapTurn(String firstPlayer) {
+		if (firstPlayer == User)
+			firstPlayer = Computer;
+		else
+			firstPlayer = User;
+		return firstPlayer;
+	}
 	public static void main (String[]args)
 	{
 		char computerLetter;
@@ -77,5 +110,6 @@ public class TicTacToe
 		int index = isLocationAvailable(board, userinput);
 		checkMove(board, index, userinput);
 	}
-
 }
+
+
