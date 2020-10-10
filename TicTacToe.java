@@ -28,7 +28,24 @@ public class TicTacToe
 		System.out.println("| " + tictactoe[6] + "| " + tictactoe[7] + "| " + tictactoe[8] + "|" );
 		System.out.println("----------");
 	}
-
+	/*UC4*/
+	public static int isLocationAvailable(char[] board, char userinput) {
+		Scanner sc = new Scanner(System.in);
+		int index;
+		boolean emptyStatus;
+		do {
+			System.out.println("Enter index to place letter " + userinput);
+			index = sc.nextInt();
+			if (board[index] == ' ') {
+				emptyStatus = true;
+				System.out.println("Index available");
+			} else {
+				emptyStatus = false;
+				System.out.println("Index not available");
+			}
+		} while (emptyStatus == false);
+		return index;
+	}
 	public static void main (String[]args)
 	{
 		char computerLetter;
@@ -39,6 +56,9 @@ public class TicTacToe
 		else
 			computerLetter='X';
 		printBoard(tictactoe);
+		createBoard();
+		showBoard(board);
+		int index = isLocationAvailable(board, userinput);
 	}
 
 }
