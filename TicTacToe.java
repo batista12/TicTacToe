@@ -149,8 +149,25 @@ public class TicTacToe
 			indexOfCorner = 8;
 		return indexOfCorner;
 	}
+	/*UC10*/
 
-
+	public static void computerChance(char[] board, int indexC, char computerLetter) {
+	while (true) {
+		if (isLocationAvailable(board, indexC)) {
+			System.out.println("Index is free");
+			board[indexC] = computerLetter;
+			showBoard(board);
+			break;
+		} else {
+			System.out.println("Index isnt free, enter another index");
+					showBoard(board);
+					indexC = (int) (Math.floor(Math.random() * 10 % 9));
+					System.out.println("Computer choose " + indexC);
+					computerMove(board, indexC, computerLetter);
+					break;
+		}
+	}
+}
 	public static void main (String[]args)
 	{
 		char computerLetter;
@@ -167,6 +184,7 @@ public class TicTacToe
 		checkMove(board, index, userinput);
 		int pos=compWin(board,userinput);
 		int corner=availableCorner(board);
+		computerChance(board,indexC,computerLetter)
 	}
 }
 
