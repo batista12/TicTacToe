@@ -51,7 +51,17 @@ public class TicTacToe
 
 		board[index] = userinput;
 	}
-	
+	/*UC6*/
+		public static String switchUser() { 
+		String userTurn = " ";
+		int user = (int) Math.floor(Math.random() * 10) % 2;
+		System.out.println("User turn");
+		if (user == 0)
+			userTurn = User;
+		else
+			userTurn = Computer;
+		return userTurn;
+	}
 	public static void main (String[]args)
 	{
 		char computerLetter;
@@ -65,6 +75,7 @@ public class TicTacToe
 		createBoard();
 		showBoard(board);
 		int index = isLocationAvailable(board, userinput);
+		checkMove(board, index, userinput);
 	}
 
 }
