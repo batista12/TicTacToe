@@ -95,7 +95,21 @@ public class TicTacToe
 			firstPlayer = User;
 		return firstPlayer;
 	}
-
+	public static void main (String[]args)
+	{
+		char computerLetter;
+		char[] tictactoe= boardIsCreated();
+		char userInputLetter=chooseLetterXO();
+		if(userInputLetter== 'X')
+			computerLetter='O';
+		else
+			computerLetter='X';
+		printBoard(tictactoe);
+		createBoard();
+		showBoard(board);
+		int index = isLocationAvailable(board, userinput);
+		checkMove(board, index, userinput);
+	}
 }
 
 
