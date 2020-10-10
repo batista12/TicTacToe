@@ -95,6 +95,30 @@ public class TicTacToe
 			firstPlayer = User;
 		return firstPlayer;
 	}
+	
+	/*UC8*/
+        private static int compWin(char[] board, char userinput) {
+	String compWinPossibility;
+	int compWinPos = 10;
+	char[] boardCopy = new char[10];
+	for (int i = 0; i < 10; i++) {
+		boardCopy[i] = board[i];
+	}
+	for (int i = 0; i < 10; i++) {
+		if (boardCopy[i] == ' ') {
+			boardCopy[i] = userinput;
+			compWinPossibility = decideWinner(boardCopy,
+					userinput);
+			if (compWinPossibility.contains("Win")) {
+				compWinPos = i;
+			}
+			boardCopy[i] = ' ';
+		}
+	}
+	return compWinPos;
+	}
+
+
 	public static void main (String[]args)
 	{
 		char computerLetter;
@@ -109,6 +133,7 @@ public class TicTacToe
 		showBoard(board);
 		int index = isLocationAvailable(board, userinput);
 		checkMove(board, index, userinput);
+		int pos=compWin(board,userinput);
 	}
 }
 
