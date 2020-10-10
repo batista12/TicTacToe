@@ -1,5 +1,6 @@
 package com.capgemini.TicTacToe;
 import java.util.Scanner;
+
 /*UC1*/
 public class TicTacToe
 {
