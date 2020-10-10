@@ -118,6 +118,38 @@ public class TicTacToe
 	return compWinPos;
 	}
 
+         /*UC9*/
+        public static int computerChance(char[] board, char userinput, char playerLetter, char computerLetter) {
+	String playerWinPossibility;
+	int positionForPlayerWin = 10;
+	char previousInput = swapPlayerLetter(userinput, playerLetter,computerLetter);
+	for (int i = 0; i < 10; i++) {
+		if (board[i] == ' ') {
+			board[i] = previousInput;
+			playerWinPossibility = isWinning(board, previousInput);
+			if (playerWinPossibility.contains("Win")) {
+				positionForPlayerWin = i;
+				board[i] = ' ';
+				break;
+			}
+			board[i] = ' ';
+		}
+	}
+	return positionForPlayerWin;
+	}
+	public static int availableCorner(char[] board) {
+		int indexOfCorner = 10;
+		if (board[0] == ' ')
+			indexOfCorner = 0;
+		else if (board[2] == ' ')
+			indexOfCorner = 2;
+		else if (board[6] == ' ')
+			indexOfCorner = 6;
+		else if (board[8] == ' ')
+			indexOfCorner = 8;
+		return indexOfCorner;
+	}
+
 
 	public static void main (String[]args)
 	{
@@ -134,6 +166,7 @@ public class TicTacToe
 		int index = isLocationAvailable(board, userinput);
 		checkMove(board, index, userinput);
 		int pos=compWin(board,userinput);
+		int corner=availableCorner(board);
 	}
 }
 
