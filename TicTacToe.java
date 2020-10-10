@@ -46,6 +46,12 @@ public class TicTacToe
 		} while (emptyStatus == false);
 		return index;
 	}
+	/*UC5*/
+	public static void checkMove(char[] board, int index, char userinput) {
+
+		board[index] = userinput;
+	}
+	
 	public static void main (String[]args)
 	{
 		char computerLetter;
